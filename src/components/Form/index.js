@@ -1,22 +1,32 @@
 import React, { Component } from "react";
-import API from "../../utils/API";
+// import API from "../../utils/API";
+import employees from "../../utils/employees.json";
 import "./style.css";
 import Title from "../Title";
 
 class Form extends Component {
   state = {
     search: "",
-    results: []
+    results: [],
+    matches: []
   };
 
   // When the component mounts, get a list employees and update this.state.results
   componentDidMount() {
-    API.getEmployeeList()
-      .then(res => this.setState({ results: res.data })) // Array of 200 employees
-      .catch(err => console.log(err));
-      // .then(res => console.log(res.data.results))
+    // API.getEmployeeList()
+    //   .then(res => {
+    //     this.setState({ results: res.data.results })
+    //     // console.log(res.data.results)
+    //   })
+    //   .catch(err => console.log(err))
+    //   // .then(res => console.log(res.data.results))
+
+    this.setState({ results: employees.results })
+
   }
 
+
+  // Eileen
   handleInputChange = event => {
     let search = event.target.name
     let value = event.target.value;
@@ -24,7 +34,9 @@ class Form extends Component {
     this.setState({
       [search]: value
     });
+
   };
+
 
 render() {
 
@@ -37,10 +49,31 @@ render() {
       onChange={this.handleInputChange}
       type="text"
     />
+    <div>
+    {this.state.results.filter(elem => elem.name.first.includes(`${this.state.search}`)).map(filteredName => (
+      <li key={filteredName.email}>
+        {filteredName.name.first}
+      </li>
+    ))}
+    </div>
     </>
   )
-
 }
 }
-
 export default Form;
+
+// let matched = this.state.results.filter(elem => {
+//   elem.name.first.includes(`${this.state.search}`)
+// })
+// this.setState({ matches: matched });
+// console.log(this.state.matches)
+
+
+// [i]name.first
+// let matched = this.state.results.filter(elem => {
+//   elem.name.first.includes(`"${this.state.search}"`);
+// })
+// this.setState({ matches: matched });
+// console.log(this.state.matches)
+// console.log(this.state.results)
+// console.log(this.state.results[2].name.first)

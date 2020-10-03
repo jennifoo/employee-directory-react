@@ -6,18 +6,30 @@ class Form extends Component {
   state = {
     search: ""
   };
-  //
-  // handleInputChange = event => {
-  //   let value = event.target.value;
-  //
-  //   this.setState({
-  //     [name]: value
-  //   });
-  // };
+
+  handleInputChange = event => {
+    let search = event.target.name
+    let value = event.target.value;
+
+    this.setState({
+      [search]: value
+    });
+  };
 
 render() {
 
-  return <Title />
+  return (
+    <>
+    <Title />
+    <input
+      // value={this.state.search}
+      name="search"
+      onChange={this.handleInputChange}
+      type="text"
+    />
+    </>
+  )
+
 
 }
 }

@@ -44,7 +44,7 @@ render() {
     <>
     <Title />
     <input
-      // value={this.state.search}
+      value={this.state.search}
       name="search"
       onChange={this.handleInputChange}
       type="text"
@@ -61,19 +61,3 @@ render() {
 }
 }
 export default Form;
-
-// let matched = this.state.results.filter(elem => {
-//   elem.name.first.includes(`${this.state.search}`)
-// })
-// this.setState({ matches: matched });
-// console.log(this.state.matches)
-
-
-// [i]name.first
-// let matched = this.state.results.filter(elem => {
-//   elem.name.first.includes(`"${this.state.search}"`);
-// })
-// this.setState({ matches: matched });
-// console.log(this.state.matches)
-// console.log(this.state.results)
-// console.log(this.state.results[2].name.first)

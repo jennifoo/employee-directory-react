@@ -1,0 +1,10 @@
+main { font-size: 8pt; }
+
+.container-fluid {
+  text-align: center;
+}
+
+.container-fluid input {
+  margin-top: 25px;
+  margin-bottom: 25px; 
+}

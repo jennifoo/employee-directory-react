@@ -1,0 +1,26 @@
+header {
+  position: relative;
+  background-color: #122149;
+  border-bottom: solid 2px red;
+  min-height: 150px;
+  text-align: center;
+  align-items: center;
+  color: #ddd;
+  font-family: sans-serif;
+}
+
+header .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+header h1 {
+  margin-bottom: 15px;
+}
+
+header p {
+  margin-top: 0;
+}

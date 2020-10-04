@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-// import API from "../../utils/API";
-import employees from "../../utils/employees.json";
+import API from "../../utils/API";
 import "./style.css";
 import Title from "../Title";
 import Row from "../Row";
@@ -10,35 +9,19 @@ class Form extends Component {
   state = {
     search: "",
     results: [],
-    isToggleOn: true,
-    ascending: [],
-    descending: []
+    isToggleOn: true
   };
 
   // When the component mounts, get a list employees and update this.state.results
   componentDidMount() {
-    // API.getEmployeeList()
-    //   .then(res => {
-    //     this.setState({ results: res.data.results })
-    //     // console.log(res.data.results)
-    //   })
-    //   .catch(err => console.log(err))
-    //   // .then(res => console.log(res.data.results))
-    let employeeSort = employees.results.sort((a, b) => {
-      return a.name.first.localeCompare(b.name.first);
-    })
-    //
-    // this.setState({ ascending: employeeSort })
-    // this.setState({ descending: employeeSort.reverse() })
-
-    this.setState({ results: employeeSort })
-
-        // if (this.state.isToggleOn = true) {
-        //   this.setState({ results: employeeSort })
-        // } else {
-        //   this.setState({ results: employeeSort.reverse() })
-        // }
-
+    API.getEmployeeList()
+      .then(res => {
+        let employeeSort = res.data.results.sort((a, b) => {
+          return a.name.first.localeCompare(b.name.first);
+        })
+        this.setState({ results: employeeSort })
+      })
+      .catch(err => console.log(err))
   }
 
   handleInputChange = event => {
@@ -56,17 +39,6 @@ class Form extends Component {
       isToggleOn: !state.isToggleOn
     }))
     this.state.results.reverse()
-    // if (this.state.isToggleOn) {
-    //   this.setState({ results: this.state.ascending })
-    // } else {
-    //   this.setState({ results: this.state.descending })
-    // }
-
-    // if (this.state.isToggleOn) {
-    //   this.setState({ results: this.state.results })
-    // } else {
-    //   this.setState({ results: this.state.results.reverse() })
-    // }
   };
 
 
@@ -93,7 +65,7 @@ render() {
         </div>
         {this.state.results.filter(elem => (elem.name.first + " " + elem.name.last).includes(`${this.state.search}`)).map((filteredName, index) => (
           <Row key={filteredName.email} color={alternatingColor[index % alternatingColor.length]}>
-            <Col size="1"><img src={filteredName.picture.thumbnail}></img></Col>
+            <Col size="1"><img src={filteredName.picture.thumbnail} alt="employee thumbnail"></img></Col>
             <Col size="3">{`${filteredName.name.first} ${filteredName.name.last}`}</Col>
             <Col size="3">{filteredName.phone}</Col>
             <Col size="3">{filteredName.email}</Col>
@@ -109,11 +81,3 @@ render() {
 }
 }
 export default Form;
-
-// "picture":{"large":"https://randomuser.me/api/portraits/women/93.jpg",
-// "medium":"https://randomuser.me/api/portraits/med/women/93.jpg",
-// "thumbnail":"https://randomuser.me/api/portraits/thumb/women/93.jpg"},"nat":"US"},
-// "name":{"title":"Miss","first":"Eileen","last":"Harvey"},
-// "phone":"(744)-274-9277",
-// "email":"eileen.harvey@example.com",
-// "dob":{"date":"1990-02-19T16:55:06.715Z","age":30},

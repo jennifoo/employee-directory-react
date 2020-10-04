@@ -43,3 +43,11 @@ main { font-size: 8pt; }
    -o-transform:scale(1.5,1); /* Opera */
    transform:scale(1.5,1); /* W3C */
 }
+
+.carrot.on::after {
+   -webkit-transform:scale(1.5,-1); /* Safari and Chrome */
+   -moz-transform:scale(1.5,-1); /* Firefox */
+   -ms-transform:scale(1.5,-1); /* IE 9 */
+   -o-transform:scale(1.5,-1); /* Opera */
+   transform:scale(1.5,-1); /* W3C */
+}

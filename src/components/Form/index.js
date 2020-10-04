@@ -9,8 +9,10 @@ import Col from "../Col";
 class Form extends Component {
   state = {
     search: "",
-    results: []
-    // matches: []
+    results: [],
+    isToggleOn: true,
+    ascending: [],
+    descending: []
   };
 
   // When the component mounts, get a list employees and update this.state.results
@@ -22,13 +24,23 @@ class Form extends Component {
     //   })
     //   .catch(err => console.log(err))
     //   // .then(res => console.log(res.data.results))
+    let employeeSort = employees.results.sort((a, b) => {
+      return a.name.first.localeCompare(b.name.first);
+    })
+    //
+    // this.setState({ ascending: employeeSort })
+    // this.setState({ descending: employeeSort.reverse() })
 
-    this.setState({ results: employees.results })
+    this.setState({ results: employeeSort })
+
+        // if (this.state.isToggleOn = true) {
+        //   this.setState({ results: employeeSort })
+        // } else {
+        //   this.setState({ results: employeeSort.reverse() })
+        // }
 
   }
 
-
-  // Eileen
   handleInputChange = event => {
     let search = event.target.name
     let value = event.target.value;
@@ -39,7 +51,25 @@ class Form extends Component {
 
   };
 
-          // <Col size="3">Name</Col>
+  handleToggle = event => {
+    this.setState(state => ({
+      isToggleOn: !state.isToggleOn
+    }))
+    this.state.results.reverse()
+    // if (this.state.isToggleOn) {
+    //   this.setState({ results: this.state.ascending })
+    // } else {
+    //   this.setState({ results: this.state.descending })
+    // }
+
+    // if (this.state.isToggleOn) {
+    //   this.setState({ results: this.state.results })
+    // } else {
+    //   this.setState({ results: this.state.results.reverse() })
+    // }
+  };
+
+
 render() {
   const alternatingColor = ['color-1', 'color2'];
   return (
@@ -56,7 +86,7 @@ render() {
     <main>
         <div className="row row-title">
           <Col size="1">Image</Col>
-          <div className="col-3 carrot">Name</div>
+          <div className={this.state.isToggleOn ? 'col-3 carrot on' : 'col-3 carrot off'} onClick={this.handleToggle}>Name</div>
           <Col size="3">Phone</Col>
           <Col size="3">Email</Col>
           <Col size="2">DOB</Col>
@@ -70,6 +100,8 @@ render() {
             <Col size="2">{filteredName.dob.date.substring(0,10)}</Col>
           </Row>
         ))}
+
+
     </main>
     </div>
     </>

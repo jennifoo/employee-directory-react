@@ -39,7 +39,7 @@ class Form extends Component {
 
   };
 
-
+          // <Col size="3">Name</Col>
 render() {
   const alternatingColor = ['color-1', 'color2'];
   return (
@@ -56,7 +56,7 @@ render() {
     <main>
         <div className="row row-title">
           <Col size="1">Image</Col>
-          <Col size="3">Name</Col>
+          <div className="col-3 carrot">Name</div>
           <Col size="3">Phone</Col>
           <Col size="3">Email</Col>
           <Col size="2">DOB</Col>

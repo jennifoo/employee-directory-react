@@ -6,7 +6,7 @@ function Title() {
     <header>
     <div className="content">
     <h1>Employee Directory</h1>
-    <p>Click on carrots to filter by heading or use the search box to narrow your results</p>
+    <p>Click on carrots to filter by heading or use the search box to narrow&nbsp;your&nbsp;results</p>
     </div>
     </header>
 )

@@ -6,5 +6,27 @@ main { font-size: 8pt; }
 
 .container-fluid input {
   margin-top: 25px;
-  margin-bottom: 25px; 
+  margin-bottom: 25px;
+}
+
+.row-title {
+  font-size: 9pt;
+  font-weight: 500;
+  padding: 10px 0 10px 0;
+  border-top: solid 1px #ddd;
+  border-bottom: solid 1px #ddd;
+}
+
+.color1 {
+  background-color: #fff;
+}
+
+.color2 {
+  background-color: #f4f4f4;
+}
+
+.row {
+  padding: 10px 0 10px 0;
+  display: flex;
+  align-items: center;
 }

@@ -41,7 +41,7 @@ class Form extends Component {
 
 
 render() {
-
+  const alternatingColor = ['color-1', 'color2'];
   return (
     <>
     <Title />
@@ -54,15 +54,15 @@ render() {
       placeholder="Search"
     />
     <main>
-        <Row>
+        <div className="row row-title">
           <Col size="1">Image</Col>
           <Col size="3">Name</Col>
           <Col size="3">Phone</Col>
           <Col size="3">Email</Col>
           <Col size="2">DOB</Col>
-        </Row>
-        {this.state.results.filter(elem => (elem.name.first + " " + elem.name.last).includes(`${this.state.search}`)).map(filteredName => (
-          <Row key={filteredName.email}>
+        </div>
+        {this.state.results.filter(elem => (elem.name.first + " " + elem.name.last).includes(`${this.state.search}`)).map((filteredName, index) => (
+          <Row key={filteredName.email} color={alternatingColor[index % alternatingColor.length]}>
             <Col size="1"><img src={filteredName.picture.thumbnail}></img></Col>
             <Col size="3">{`${filteredName.name.first} ${filteredName.name.last}`}</Col>
             <Col size="3">{filteredName.phone}</Col>
